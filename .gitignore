@@ -1,0 +1,60 @@
+# === VSCode settings ===
+.vscode/
+.history/
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+ENV/
+*.sqlite3
+
+# === macOS ===
+.DS_Store
+
+# === Windows ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Linux ===
+*~
+
+# === Logs ===
+*.log
+logs/
+*.log.*
+
+# === Editor backups ===
+*.swp
+*.swo
+*~
+
+# === Compiled binaries ===
+*.out
+*.class
+*.exe
+*.dll
+*.so
+*.o
+*.obj
+
+# === Other ===
+.idea/
+*.iml
+.env
