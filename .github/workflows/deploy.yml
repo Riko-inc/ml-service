@@ -50,5 +50,5 @@ jobs:
             sudo ctr images import /tmp/github/workspace/image.tar --base-name riko-inc/ml-service --debug
             
             helm uninstall ml-service -n services
-            helm upgrade --install ml-service /home/user1/ml-service --namespace services --set image.tag=latest --set image.repository=riko-inc/ml-service --set-file extraEnv=home/user1/secrets/ml-service.env
+            helm upgrade --install ml-service /home/user1/ml-service --namespace services --set image.tag=latest --set image.repository=riko-inc/ml-service --set-file extraEnv=/home/user1/secrets/ml-service.env
           debug: true
