@@ -37,7 +37,7 @@ giga_client = GigaChatClient()
 text_llm = CustomChatModel(api_url=GIGACHAT_API_URL)
 
 
-@app.post("/api/v1/send", response_model=ChatResponse)
+@app.post("/api/v1/chat", response_model=ChatResponse)
 async def chat(
         request: ChatRequest,
         user: dict = Depends(get_current_user),
