@@ -1,14 +1,12 @@
 from langchain.tools import BaseTool
-from langchain import LLMChain
 from langchain.schema import AIMessage
 from langchain_core.outputs import ChatResult
 
-from core_app.models.text_llm import CustomChatModel
-from core_app.api_clients.api_clients import GigaChatClient, GIGACHAT_API_URL
+from chat_app.core_app.models.text_llm import CustomChatModel
+from chat_app.core_app.api_clients.api_clients import GigaChatClient, GIGACHAT_API_URL
 
 llm = CustomChatModel(api_url=GIGACHAT_API_URL)
 client = GigaChatClient()
-
 
 
 class SummarizationTool(BaseTool):

@@ -4,7 +4,7 @@ from time import time
 import os
 import requests
 from uuid import uuid4
-from core_app.tools.setup_logger import setup_logger
+from chat_app.core_app.tools.setup_logger import setup_logger
 
 
 logger = setup_logger(__name__.upper())

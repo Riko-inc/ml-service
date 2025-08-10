@@ -13,8 +13,11 @@ import tempfile
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("OCRWorker")
 
-# Путь к Tesseract (Windows)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+from dotenv import load_dotenv
+load_dotenv()
+
+# Путь к Tesseract
+pytesseract.pytesseract.tesseract_cmd = os.getenv("TESSERACT_EXE_PATH")
 
 class OCRWorker:
     def __init__(self):

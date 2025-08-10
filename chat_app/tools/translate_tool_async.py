@@ -3,7 +3,7 @@ import uuid
 from typing import Dict, Any
 from langchain.tools import BaseTool
 
-from tools.async_kafka_client import AsyncKafkaToolClient
+from async_kafka_client import AsyncKafkaToolClient
 
 
 class TranslateToolAsync(BaseTool):

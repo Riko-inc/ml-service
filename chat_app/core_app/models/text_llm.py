@@ -4,8 +4,8 @@ from langchain.schema import AIMessage
 from langchain_core.language_models import BaseChatModel
 from langchain_core.outputs import ChatGeneration, ChatResult
 from langchain_core.runnables import Runnable
-from core_app.tools.setup_logger import setup_logger
-from core_app.api_clients.api_clients import GigaChatClient, GIGACHAT_API_URL
+from chat_app.core_app.tools.setup_logger import setup_logger
+from chat_app.core_app.api_clients.api_clients import GigaChatClient, GIGACHAT_API_URL
 
 import logging
 from time import sleep
@@ -198,8 +198,8 @@ if __name__ == "__main__":
     
         
         print("Sending test message...")
-        user_prompt = "huy"
-        sys_prompt = "nehuy"
+        user_prompt = "test"
+        sys_prompt = "test_system"
         result = model.invoke([sys_prompt, user_prompt], token=token)
         print(f"Response from GigaChat: {result}")
         

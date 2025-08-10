@@ -49,12 +49,12 @@ Input JSON object:
       "degree": "MSc",
       "university": "Moscow State University"
    },
-   "job":  "jerking off to rich people",
+   "job":  "Professional dancer",
    ""user_name": "pavlova"
 And the result of our code should be the following json:
    ""username" : "pavlova" 
    "age": "None"
-   "hobbies" : {1 : "jerking off to rich people"}
+   "hobbies" : {1 : "dancing"}
    "education": {
                "degree": "MSc",
                "university": "Moscow State University"

@@ -3,7 +3,7 @@ from logging import Formatter, FileHandler, StreamHandler
 
 def setup_logger(name: str) -> logging.Logger:
     """
-    Настройка логгера с выводом файла в консоль, с минимальным количеством диталей в консоль
+    Настройка логгера с выводом файла в консоль с минимальным количеством деталей
     """
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)

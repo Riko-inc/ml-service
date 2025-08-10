@@ -3,7 +3,7 @@ from gradio_client import Client
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
 from langchain_core.language_models import BaseChatModel
 from langchain_core.outputs import ChatGeneration, ChatResult
-from core_app.tools.setup_logger import setup_logger
+from chat_app.core_app.tools.setup_logger import setup_logger
 import json
 
 

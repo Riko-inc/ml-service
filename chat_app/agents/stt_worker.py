@@ -4,9 +4,7 @@ import asyncio
 import logging
 import aiohttp
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
-from io import BytesIO
 import base64
-import tempfile
 
 # Настройки логирования
 logging.basicConfig(level=logging.INFO)
