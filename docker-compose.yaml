@@ -14,7 +14,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    entrypoint: ["/app/entrypoint.sh"]
 
   postgres:
     image: postgres:15-alpine

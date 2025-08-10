@@ -23,3 +23,5 @@ ENV PYTHONPATH=/app
 ENV PORT=8080
 
 EXPOSE $PORT
+
+ENTRYPOINT ["./entrypoint.sh"]
