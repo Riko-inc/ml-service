@@ -3,7 +3,7 @@ import json
 import logging
 from typing import Dict, Any, Optional
 
-from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
+from aiokafka import AIOKafkaConsumer
 from prefect import flow, task, get_run_logger
 
 from core_app.models.text_llm import CustomChatModel

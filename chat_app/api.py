@@ -8,7 +8,6 @@ from sqlalchemy.orm import Session
 from chat_app.core_app.database.session import get_db
 
 from chat_app.core_app.dependencies.auth import get_current_user
-from chat_app.core_app.schemas.message import Message
 from chat_app.core_app.services.chat import get_user_messages, save_message
 from chat_app.core_app.models.text_llm import CustomChatModel
 from chat_app.core_app.api_clients.api_clients import GigaChatClient, GIGACHAT_API_URL
