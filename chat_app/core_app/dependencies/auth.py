@@ -1,8 +1,8 @@
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import HTTPBearer
 from chat_app.core_app.api_clients.auth_client import validate_token
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = HTTPBearer()
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     """

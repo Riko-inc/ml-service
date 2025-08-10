@@ -26,18 +26,12 @@ class GigaChatClient:
         self._token_cache: Optional[TokenCache] = None
 
     def get_access_token(self) -> str:
-        cached = self._get_cached_token()
-        if cached:
-            return cached
         return self._request_new_token()
 
     def _get_cached_token(self) -> Optional[str]:
         if not self._token_cache:
             return None
-            
-        if time() < self._token_cache.expires_at - TOKEN_REFRESH_MARGIN:
-            return self._token_cache.access_token
-            
+
         return None
 
     def _request_new_token(self) -> str:
