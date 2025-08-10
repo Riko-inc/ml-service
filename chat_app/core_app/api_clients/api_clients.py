@@ -1,10 +1,21 @@
 from pydantic import BaseModel
 from typing import Optional
-from time import time
 import os
 import requests
 from uuid import uuid4
 from chat_app.core_app.tools.setup_logger import setup_logger
+from dotenv import load_dotenv
+import base64
+
+load_dotenv()
+
+def get_encoded_client_credentials():
+    client_id = os.getenv("CLIENT_ID")
+    client_secret = os.getenv("CLIENT_SECRET")
+    credentials = f"{client_id}:{client_secret}"
+    credentials_bytes = credentials.encode('utf-8')
+    encoded_credentials = base64.b64encode(credentials_bytes).decode('utf-8')
+    return encoded_credentials
 
 
 logger = setup_logger(__name__.upper())
@@ -31,7 +42,6 @@ class GigaChatClient:
     def _get_cached_token(self) -> Optional[str]:
         if not self._token_cache:
             return None
-
         return None
 
     def _request_new_token(self) -> str:
@@ -39,7 +49,7 @@ class GigaChatClient:
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': 'application/json',
             'RqUID': str(uuid4()),
-            'Authorization': f'Basic {self.key}'
+            'Authorization': f'Basic {get_encoded_client_credentials()}'
         }
         try:
             resp = requests.post(

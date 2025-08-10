@@ -3,6 +3,7 @@ import requests
 import logging
 from typing import List, Dict, Optional
 from fastapi import HTTPException, status
+from fastapi.security import HTTPAuthorizationCredentials
 
 logger = logging.getLogger(__name__)
 SPACE_SERVICE_HOST = os.getenv("SPACE_SERVICE_HOST", "http://82.202.138.236:31064/space")
@@ -14,7 +15,7 @@ def get_user_spaces(token: str) -> Optional[List[Dict]]:
     url = f"{SPACE_SERVICE_HOST}/api/v1/spaces"
     headers = {
         "Authorization": f"Bearer {token}",
-        "Accept": "application/json"
+        "Accept": "*/*"
     }
 
     try:
@@ -32,15 +33,25 @@ def get_user_spaces(token: str) -> Optional[List[Dict]]:
 
 
 
-def get_user_space_by_prefix(token: str, prefix: str) -> Optional[Dict]:
+def get_user_space_by_prefix(token: HTTPAuthorizationCredentials, workspace_prefix: str) -> Optional[Dict]:
     """
     Получает информацию о пространстве по его префиксу
     """
-    url = f"{SPACE_SERVICE_HOST}/api/v1/spaces/{prefix}/prefix]"
+
+    token = token.credentials
+
+    logger.error(f"Getting user spaces by prefix {workspace_prefix}")
+    url = f"{SPACE_SERVICE_HOST}/api/v1/spaces/{workspace_prefix}/prefix"
+
+    logger.error(f"url: {url}")
+
     headers = {
         "Authorization": f"Bearer {token}",
-        "Accept": "application/json"
+        "Accept": "*/*"
     }
+
+    logger.error(f"header token: {token}")
+    logger.error(f"header token type: {type(token)}")
 
     try:
         response = requests.get(url, headers=headers, timeout=10)

@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import uvicorn
 from dotenv import load_dotenv
+from fastapi.security import HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 
 from chat_app.core_app.api_clients.space_client import get_user_space_by_prefix
@@ -43,7 +44,7 @@ text_llm = CustomChatModel(api_url=GIGACHAT_API_URL)
 @app.post("/api/v1/chat", response_model=ChatResponse)
 async def chat(
         request: ChatRequest,
-        user_token: str = Depends(oauth2_scheme),
+        user_token: HTTPAuthorizationCredentials = Depends(oauth2_scheme),
         user: dict = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
@@ -51,18 +52,22 @@ async def chat(
     Обрабатывает запрос к чат-модели и сохраняет историю
     """
     system_default = "Ты полезный ассистент, готовый ответить на вопросы пользователя"
+    additional_info = "Вот список задач пользователя, о которых он тебя спрашивал: "
     user_id = user["id"]
 
     # Сохраняем запрос пользователя
     save_message(db, user_id, request.content, "user")
 
     giga_token = giga_client.get_access_token()
-    logger.info(f"Got gigachat token: {giga_token}")
 
     try:
         if check_task_request_need(request.content):
-            space_info = get_user_space_by_prefix(token=user_token, prefix=request.space_prefix)
+            space_info = get_user_space_by_prefix(token=user_token, workspace_prefix=request.space_prefix)
+
+            logger.error(f"Got space info: {space_info}")
+            request.content += additional_info
             request.content += get_tasks_in_space(token=user_token, space_id=int(space_info["workspaceId"]))
+
         result_obj = text_llm.invoke([system_default, request.content], token=giga_token)
         result = result_obj.content
 
