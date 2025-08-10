@@ -19,16 +19,16 @@ def validate_token(token: str) -> Optional[Dict]:
     2. /api/v1/auth/details - для получения деталей пользователя
     """
     # Конфигурация из переменных окружения
-    AUTH_SERVICE_URL = os.getenv("AUTH_SERVICE_URL", "http://82.202.138.236:31064/auth")
+    AUTH_SERVICE_HOST = os.getenv("AUTH_SERVICE_HOST", "http://82.202.138.236:31064/auth")
 
     # 1. Проверка валидности токена
-    check_token_url = f"{AUTH_SERVICE_URL}/api/v1/auth/check-token"
+    check_token_url = f"{AUTH_SERVICE_HOST}/api/v1/auth/check-token"
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "*/*"
     }
 
-    logger.error("trying auth with token: %s \non server %s", token, AUTH_SERVICE_URL)
+    logger.error("trying auth with token: %s \non server %s", token, AUTH_SERVICE_HOST)
 
     try:
         # Проверяем валидность токена
@@ -48,7 +48,7 @@ def validate_token(token: str) -> Optional[Dict]:
             return None
 
         # 2. Получаем детали пользователя
-        user_details_url = f"{AUTH_SERVICE_URL}/api/v1/auth/details"
+        user_details_url = f"{AUTH_SERVICE_HOST}/api/v1/auth/details"
         details_response = requests.get(
             user_details_url,
             headers=headers,
