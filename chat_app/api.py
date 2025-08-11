@@ -62,7 +62,7 @@ async def chat(
 
     try:
         if check_task_request_need(request.content):
-            space_info = get_user_space_by_prefix(token=user_token, workspace_prefix=request.space_prefix)
+            space_info = get_user_space_by_prefix(token=user_token, workspace_prefix=request.space)
 
             logger.error(f"Got space info: {space_info}")
             request.content += additional_info
