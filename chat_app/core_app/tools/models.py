@@ -26,7 +26,7 @@ class ChatResponse(BaseModel):
 
 class ChatRequest(BaseModel):
     content: str = Field(..., description="Текст запроса пользователя")
-    space_prefix: str = Field(..., description="Префикс пространства пользователя")
+    space: str = Field(..., description="Префикс пространства пользователя")
 
 class UserProfile(BaseModel):
     name_of_teachers: str
